@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculator</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<style>
+        body {
+            background-color: #d1caca;
+        }
+		.panel-default {
+			background-color: #f7f7f9;
+			border-color: #ddd;
+			box-shadow: none;
+		}
+
+		.panel-default > .panel-heading {
+			background-color: #6ab9ff;
+			border-color: #ddd;
+			color: #fff;
+			font-weight: bold;
+			text-shadow: none;
+		}
+
+		.btn {
+			border-radius: 5px;
+			font-size: 30px;
+			height: 70px;
+			margin: 5px;
+			width: 70px;
+		}
+
+		.btn-default {
+			background-color: #fff;
+			color: #6ab9ff;
+			border-color: #ddd;
+			box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+			transition: all 0.2s ease;
+		}
+
+		.btn-default:hover {
+			background-color: #6ab9ff;
+			border-color: #6ab9ff;
+			color: #fff;
+			box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+		}
+
+		#result {
+			background-color: #fff;
+			border: none;
+			border-radius: 5px;
+			box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+			color: #333;
+			font-size: 50px;
+			font-weight: bold;
+			height: 100px;
+			margin-bottom: 20px;
+			padding: 10px;
+			text-align: right;
+			width: 100%;
+		}
+
+		@media only screen and (max-width: 768px) {
+			.btn {
+				font-size: 20px;
+				height: 50px;
+				width: 50px;
+			}
+
+			#result {
+				font-size: 30px;
+				height: 70px;
+			}
+		}
+
+	</style>
+</head>
+<body>
+	<body>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4"></div>
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Calculator</div>
+                        <div class="panel-body">
+                            <input type="text" id="result" class="form-control" readonly>
+                            <br>
+                            <div class="row">
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button type="button" class="btn btn-default btn-block" onclick="clearResult()">C</button>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button type="button" class="btn btn-default btn-block" onclick="deleteDigit()">CE</button>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button type="button" class="btn btn-default btn-block" onclick="addDigit('/')">/</button>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button type="button" class="btn btn-default btn-block" onclick="addDigit('*')">*</button>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button type="button" class="btn btn-default btn-block" onclick="addDigit('7')">7</button>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button type="button" class="btn btn-default btn-block" onclick="addDigit('8')">8</button>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button type="button" class="btn btn-default btn-block" onclick="addDigit('9')">9</button>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button type="button" class="btn btn-default btn-block" onclick="addDigit('-')">-</button>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button type="button" class="btn btn-default btn-block" onclick="addDigit('4')">4</button>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button type="button" class="btn btn-default btn-block" onclick="addDigit('5')">5</button>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button type="button" class="btn btn-default btn-block" onclick="addDigit('6')">6</button>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button type="button" class="btn btn-default btn-block" onclick="addDigit('+')">+</button>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button type="button" class="btn btn-default btn-block" onclick="addDigit('1')">1</button>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button type="button" class="btn btn-default btn-block" onclick="addDigit('2')">2</button>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button type="button" class="btn btn-default btn-block" onclick="addDigit('3')">3</button>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button type="button" class="btn btn-default" onclick="calculate()">=</button>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button type="button" class="btn btn-default btn-block" onclick="addDigit('0')">0</button>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button type="button" class="btn btn-default" onclick="addDigit('.')">.</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+		var expression = "";
+        function addDigit(digit) {
+            expression += digit;
+            $("#result").val(expression);
+        }
+        function clearResult() {
+            expression = "";
+            $("#result").val("");
+        }
+        function deleteDigit() {
+            expression = expression.slice(0, -1);
+            $("#result").val(expression);
+        }
+        function calculate() {
+            try {
+                var result = eval(expression);
+                $("#result").val(result);
+                expression = "";
+            } catch (err) {
+                $("#result").val("Error");
+                expression = "";
+            }
+        }
+</script>
+</body>
